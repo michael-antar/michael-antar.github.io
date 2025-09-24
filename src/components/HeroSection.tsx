@@ -6,16 +6,16 @@ export const HeroSection = () => {
         <Section id="hero">
             <div className="max-w-3xl mx-auto">
                 <h1 className="text-4xl md:text-5xl font-bold mb-4">
-                    Dedicated Developer Crafting High-Quality Web Experiences
+                    Michael Antar
                 </h1>
                 <p className="text-lg text-muted-foreground mb-8">
-                    A passionate software developer with a focus on building
-                    beautiful and functional applications. Ready to take
-                    ownership and create something amazing.
+                    Coding is my passion and main hobby. I'm looking for an
+                    opportunity to contribute to a team where I can work hard,
+                    take ownership of a product, and be proud of what I build.
                 </p>
                 <div className="flex justify-center items-center space-x-6">
                     <a
-                        href="https://github.com/your-username"
+                        href="https://github.com/michael-antar"
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label="GitHub"
@@ -23,7 +23,7 @@ export const HeroSection = () => {
                         <Github className="h-6 w-6 hover:opacity-75" />
                     </a>
                     <a
-                        href="https://linkedin.com/in/your-username"
+                        href="https://linkedin.com/in/michaelantar"
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label="LinkedIn"
