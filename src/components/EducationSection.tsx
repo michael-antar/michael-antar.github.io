@@ -1,46 +1,72 @@
 import { Section } from './Section';
+import asuLogo from '@/assets/asuLogo.png';
 
 export const EducationSection = () => {
     return (
         <Section id="education">
-            <div className="max-w-3xl mx-auto">
-                <h2 className="text-3xl font-bold text-center mb-6">
+            <div className="max-w-4xl mx-auto">
+                <h2 className="text-3xl font-bold text-center mb-8">
                     Education
                 </h2>
-                <p className="text-sm text-muted-foreground">
-                    August 2021 - May 2025
-                </p>
-                <h3 className="font-bold text-lg mt-1">
-                    Arizona State University
-                </h3>
-                <h4 className="font-medium text-primary/80 mb-1">
-                    Bachelor of Science in Computer Science,{' '}
-                    <i>Summa Cum Laude</i>
-                </h4>
-                <h4 className="font-medium text-primary/80 mb-3">
-                    Certificate in Business Data Analytics
-                </h4>
-                <p className="mb-2">GPA: 4.00</p>
-                <ul className="list-disc pl-5 space-y-2 text-sm">
-                    <li>
-                        Developed a strong foundation in software development
-                        and computer science through rigorous coursework in{' '}
-                        <strong>
-                            Data Structures & Algorithms, Software Engineering,
-                            Database Management, and Software Testing
-                        </strong>
-                        .
-                    </li>
-                    <li>
-                        Recognized for consistent academic excellence by
-                        receiving the <strong>ASU Moeur Award</strong> and being
-                        named to the{' '}
-                        <strong>
-                            Ira A. Fulton Schools of Engineering Dean's List
-                        </strong>{' '}
-                        for all 8 semesters.
-                    </li>
-                </ul>
+
+                {/* Main flex for asu content */}
+                <div className="flex flex-col md:flex-row items-center justify-between gap-12">
+                    {/* Image container */}
+                    <div className="hidden md:block flex-shrink-0">
+                        <img
+                            src={asuLogo}
+                            alt="Arizona State University Logo"
+                            className="w-32 h-32 object-cover rounded-lg"
+                        />
+                    </div>
+
+                    {/* Text container */}
+                    <div className="flex-grow">
+                        <p className="text-sm text-muted-foreground">
+                            August 2021 - May 2025
+                        </p>
+
+                        <div className="flex justify-between items-baseline">
+                            <h3 className="font-bold text-lg mt-1">
+                                Arizona State University
+                            </h3>
+                            <p className="text-sm font-medium text-muted-foreground">
+                                GPA: 4.00
+                            </p>
+                        </div>
+
+                        <h4 className="font-medium text-primary/80 mb-1">
+                            Bachelor of Science in Computer Science,{' '}
+                            <i>Summa Cum Laude</i>
+                        </h4>
+                        <h4 className="font-medium text-primary/80 mb-4">
+                            Certificate in Business Data Analytics
+                        </h4>
+
+                        <ul className="list-disc pl-5 space-y-2 text-sm">
+                            <li>
+                                Developed a comprehensive foundation in software
+                                development through rigorous coursework in{' '}
+                                <strong>
+                                    Data Structures & Algorithms, Software
+                                    Engineering, Database Management, and
+                                    Software Testing
+                                </strong>
+                                .
+                            </li>
+                            <li>
+                                Recognized for consistent academic excellence by
+                                receiving the <strong>ASU Moeur Award</strong>{' '}
+                                and being named to the{' '}
+                                <strong>
+                                    Ira A. Fulton Schools of Engineering Dean's
+                                    List
+                                </strong>{' '}
+                                for all 8 semesters.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </Section>
     );
