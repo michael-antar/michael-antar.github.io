@@ -1,6 +1,7 @@
 import './App.css';
 import { Layout } from './components/Layout';
 import { HeroSection } from './components/HeroSection';
+import { EducationSection } from './components/EducationSection';
 import { ExperienceSection } from './components/ExperienceSection';
 import { ProjectsSection } from './components/ProjectsSection';
 import { experienceData } from './data/experiences';
@@ -10,6 +11,7 @@ function App() {
     return (
         <Layout>
             <HeroSection />
+            <EducationSection />
             <ExperienceSection experiences={experienceData} />
             <ProjectsSection projects={projectsData} />
         </Layout>

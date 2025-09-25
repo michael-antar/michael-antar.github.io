@@ -9,6 +9,18 @@ export const Navbar = () => {
                 </a>
                 <div className="flex items-center space-x-4">
                     <a
+                        href="#hero"
+                        className="text-sm font-medium hover:underline"
+                    >
+                        About me
+                    </a>
+                    <a
+                        href="#education"
+                        className="text-sm font-medium hover:underline"
+                    >
+                        Education
+                    </a>
+                    <a
                         href="#experience"
                         className="text-sm font-medium hover:underline"
                     >
