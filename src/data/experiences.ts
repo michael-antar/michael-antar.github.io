@@ -46,7 +46,7 @@ export const experienceData: Experience[] = [
         date: 'June 2024 - Aug 2024',
         description: [
             'Co-led the development of a "Generative AI Log Mining" project, boosting developer productivity by automating log analysis and query response with GPT-4o.',
-            'Designed and implemented backend systems in Python, utilizing SQL and pandas to filter, extract, and store large-scale log data from Azure.',
+            'Designed and implemented backend systems in Python, utilizing SQL and pandas to filter, extract, and store large-scale log data from MongoDB.',
             'Developed both frontend and backend components for an AI chatbot, enabling developers to query logs with natural language and receive real-time responses.',
         ],
         techStack: ['Python', 'LLM', 'SQL', 'pandas'],
