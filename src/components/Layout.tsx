@@ -10,10 +10,17 @@ type LayoutProps = {
 
 export const Layout = ({ children }: LayoutProps) => {
     return (
-        <BubbleBackground interactive={true}>
-            <Navbar />
-            <main className="container mx-auto px-4 py-8">{children}</main>
-            <Footer />
-        </BubbleBackground>
+        <>
+            <BubbleBackground
+                interactive={true}
+                className="fixed inset-0 -z-10"
+            />
+
+            <div className="relative z-0">
+                <Navbar />
+                <main className="container mx-auto px-4 py-8">{children}</main>
+                <Footer />
+            </div>
+        </>
     );
 };
