@@ -41,7 +41,11 @@ const SKILLS_DATA: { [key: string]: Omit<Skill, 'name'> } = {
         darkColor: '197 100% 60%',
     },
     SQL: {
-        lightColor: '34 97% 64%',
+        lightColor: '34 97% 44%',
+        darkColor: '34 97% 70%',
+    },
+    Agile: {
+        lightColor: '34 97% 44%',
         darkColor: '34 97% 70%',
     },
     'Robot Framework': {
@@ -58,6 +62,46 @@ const SKILLS_DATA: { [key: string]: Omit<Skill, 'name'> } = {
         icon: si.siC,
         lightColor: '212 26% 50%',
         darkColor: '212 26% 73%',
+    },
+    Vite: {
+        icon: si.siVite,
+        lightColor: '237, 100%, 70%',
+        darkColor: '237, 100%, 90%',
+    },
+    'GitHub Actions': {
+        icon: si.siGithubactions,
+        lightColor: '212, 100%, 56%',
+        darkColor: '212, 100%, 76%',
+    },
+    Vercel: {
+        icon: si.siVercel,
+        lightColor: '0 0% 20%',
+        darkColor: '0 0% 80%',
+    },
+    pandas: {
+        icon: si.siPandas,
+        lightColor: '252, 91%, 38%',
+        darkColor: '252, 91%, 88%',
+    },
+    Postman: {
+        icon: si.siPostman,
+        lightColor: '16, 100%, 61%',
+        darkColor: '16, 100%, 61%',
+    },
+    GitLab: {
+        icon: si.siGitlab,
+        lightColor: '20, 97%, 57%',
+        darkColor: '20, 97%, 57%',
+    },
+    Jira: {
+        icon: si.siJira,
+        lightColor: '216, 100%, 40%',
+        darkColor: '216, 100%, 60%',
+    },
+    Git: {
+        icon: si.siGit,
+        lightColor: '9, 86%, 57%',
+        darkColor: '9, 86%, 57%',
     },
 };
 
