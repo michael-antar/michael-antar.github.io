@@ -1,21 +1,24 @@
 import React from 'react';
 import { getSkill } from '@/data/skills';
+import { useTheme } from 'next-themes';
 
 type SkillBadgeProps = {
     skill: string;
 };
 
 export const SkillBadge = ({ skill }: SkillBadgeProps) => {
-    const { name, icon: Icon, color } = getSkill(skill);
+    const { theme } = useTheme();
+    const { name, icon: Icon, lightColor, darkColor } = getSkill(skill);
+
+    const accentColor = theme === 'dark' ? darkColor : lightColor;
 
     return (
         <div
             className="flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium border
-                       bg-[hsl(var(--skill-color)/0.10)]
-                       border-[hsl(var(--skill-color)/0.30)]
-                       text-[hsl(var(--skill-color))]
-                       transition-colors hover:bg-[hsl(var(--skill-color)/0.20)]"
-            style={{ '--skill-color': color } as React.CSSProperties}
+                       bg-muted/50 hover:bg-muted/70
+                       border-[hsl(var(--skill-color)/0.40)]
+                       text-[hsl(var(--skill-color))]"
+            style={{ '--skill-color': accentColor } as React.CSSProperties}
         >
             {Icon && (
                 <svg

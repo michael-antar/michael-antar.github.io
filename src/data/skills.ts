@@ -4,7 +4,8 @@ import type { SimpleIcon } from 'simple-icons';
 type Skill = {
     name: string;
     icon?: SimpleIcon;
-    color: string; // HSL color string, e.g., '217 91% 60%' for blue
+    lightColor: string; // HSL color for light mode
+    darkColor: string; // HSL color for dark mode
 };
 
 // Predefined color pallet
@@ -21,34 +22,42 @@ const COLOR_PALETTE = [
 const SKILLS_DATA: { [key: string]: Omit<Skill, 'name'> } = {
     React: {
         icon: si.siReact,
-        color: '197 90% 41%',
+        lightColor: '197 90% 41%', // Bright Blue
+        darkColor: '197 90% 61%', // Lighter Blue
     },
     TypeScript: {
         icon: si.siTypescript,
-        color: '211 90% 48%',
+        lightColor: '211 90% 48%',
+        darkColor: '211 90% 68%',
     },
     Python: {
         icon: si.siPython,
-        color: '207 90% 54%',
+        lightColor: '207 90% 54%',
+        darkColor: '197 100% 60%',
     },
     'Tailwind CSS': {
         icon: si.siTailwindcss,
-        color: '197 100% 48%',
+        lightColor: '197 100% 48%',
+        darkColor: '197 100% 60%',
     },
     SQL: {
-        color: '34 97% 64%',
+        lightColor: '34 97% 64%',
+        darkColor: '34 97% 70%',
     },
     'Robot Framework': {
         icon: si.siRobotframework,
-        color: '0, 0%, 0%',
+        lightColor: '0 0% 20%',
+        darkColor: '0 0% 80%',
     },
     JSON: {
         icon: si.siJson,
-        color: '0, 0%, 0%',
+        lightColor: '0 0% 20%',
+        darkColor: '0 0% 80%',
     },
     C: {
         icon: si.siC,
-        color: '212, 26%, 73%',
+        lightColor: '212 26% 50%',
+        darkColor: '212 26% 73%',
     },
 };
 
@@ -73,5 +82,5 @@ export const getSkill = (skillName: string): Skill => {
     // Fallback for skills not in the directory
     const hash = simpleHash(skillName);
     const color = COLOR_PALETTE[hash % COLOR_PALETTE.length];
-    return { name: skillName, color };
+    return { name: skillName, lightColor: color, darkColor: color };
 };
