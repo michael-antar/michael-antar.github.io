@@ -14,7 +14,7 @@ export const ExperienceSection = ({ experiences }: ExperienceSectionProps) => {
             </h2>
             <div className="relative max-w-2xl mx-auto">
                 {/* The central vertical line of the timeline */}
-                <div className="absolute left-0 w-0.5 h-full bg-border"></div>
+                <div className="absolute left-0 w-0.5 h-full bg-muted"></div>
 
                 <div className="space-y-8">
                     {experiences.map((exp, index) => (
