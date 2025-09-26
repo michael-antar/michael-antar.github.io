@@ -34,7 +34,7 @@ const ExperienceItem = ({ experience }: ExperienceItemProps) => {
     return (
         <div className="relative pl-8 md:pl-12 py-4">
             {/* The dot on the timeline */}
-            <div className="absolute left-[-5px] md:left-[-9px] top-6 w-3 h-3 md:w-5 md:h-5 bg-primary rounded-full border-4 border-background"></div>
+            <div className="absolute left-[-5px] top-6 w-3 h-3 bg-muted rounded-full border-4 border-muted"></div>
 
             <p className="text-sm text-muted-foreground">{experience.date}</p>
             <h3 className="font-bold text-lg mt-1">{experience.role}</h3>
