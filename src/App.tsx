@@ -20,7 +20,7 @@ function App() {
                     <ExperienceSection experiences={experienceData} />
                 </div>
 
-                <div className="lg:col-span-3">
+                <div className="lg:col-span-2">
                     <ProjectsSection projects={projectsData} />
                 </div>
             </div>
