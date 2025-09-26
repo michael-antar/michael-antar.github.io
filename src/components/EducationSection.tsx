@@ -12,7 +12,7 @@ export const EducationSection = () => {
                 {/* Main flex for asu content */}
                 <div className="flex flex-col md:flex-row items-center justify-between gap-12">
                     {/* Image container */}
-                    <div className="hidden md:block flex-shrink-0">
+                    <div className="hidden xl:block flex-shrink-0">
                         <img
                             src={asuLogo}
                             alt="Arizona State University Logo"
