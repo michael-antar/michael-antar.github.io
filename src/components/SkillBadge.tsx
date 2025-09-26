@@ -7,10 +7,10 @@ type SkillBadgeProps = {
 };
 
 export const SkillBadge = ({ skill }: SkillBadgeProps) => {
-    const { theme } = useTheme();
+    const { resolvedTheme } = useTheme();
     const { name, icon: Icon, lightColor, darkColor } = getSkill(skill);
 
-    const accentColor = theme === 'dark' ? darkColor : lightColor;
+    const accentColor = resolvedTheme === 'dark' ? darkColor : lightColor;
 
     return (
         <div
