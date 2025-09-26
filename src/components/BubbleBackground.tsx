@@ -24,7 +24,6 @@ type BubbleBackgroundProps = React.ComponentProps<'div'> & {
 function BubbleBackground({
     ref,
     className,
-    children,
     interactive = false,
     transition = { stiffness: 100, damping: 20 },
     colors = {
@@ -62,9 +61,8 @@ function BubbleBackground({
             mouseY.set(e.clientY - centerY);
         };
 
-        currentContainer?.addEventListener('mousemove', handleMouseMove);
-        return () =>
-            currentContainer?.removeEventListener('mousemove', handleMouseMove);
+        window.addEventListener('mousemove', handleMouseMove);
+        return () => window.removeEventListener('mousemove', handleMouseMove);
     }, [interactive, mouseX, mouseY]);
 
     return (
@@ -183,8 +181,6 @@ function BubbleBackground({
                     />
                 )}
             </div>
-
-            {children}
         </div>
     );
 }
