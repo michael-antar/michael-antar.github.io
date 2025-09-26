@@ -49,7 +49,7 @@ export const experienceData: Experience[] = [
             'Designed and implemented backend systems in Python, utilizing SQL and pandas to filter, extract, and store large-scale log data from MongoDB.',
             'Developed both frontend and backend components for an AI chatbot, enabling developers to query logs with natural language and receive real-time responses.',
         ],
-        techStack: ['Python', 'LLM', 'SQL', 'pandas'],
+        techStack: ['Python', 'LLM', 'SQL', 'pandas', 'RAG'],
     },
     {
         role: 'Software Quality Engineer Intern',

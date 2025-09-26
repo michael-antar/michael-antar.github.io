@@ -103,6 +103,10 @@ const SKILLS_DATA: { [key: string]: Omit<Skill, 'name'> } = {
         lightColor: '9, 86%, 57%',
         darkColor: '9, 86%, 57%',
     },
+    RAG: {
+        lightColor: '340 82% 52%',
+        darkColor: '340 82% 52%',
+    },
 };
 
 // Simple hash for fallback color
