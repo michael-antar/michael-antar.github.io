@@ -1,11 +1,16 @@
 import { skillCategoriesData } from '@/data/skillCategories';
 import { SkillBadge } from './SkillBadge';
+import { useTheme } from 'next-themes';
 
 export const SkillCategories = () => {
+    const { resolvedTheme } = useTheme();
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {skillCategoriesData.map((category) => {
-                const baseColor = category.categoryColor;
+                const baseColor =
+                    resolvedTheme === 'dark'
+                        ? category.darkColor
+                        : category.lightColor;
 
                 return (
                     <div

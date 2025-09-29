@@ -1,16 +1,8 @@
-import { getSkill } from './skills';
-
 export type SkillCategory = {
     title: string;
     skills: string[];
-    categoryColor: string;
-};
-
-const CATEGORY_COLORS = {
-    'Frontend Development': getSkill('React').lightColor,
-    'Backend & Data': getSkill('Python').lightColor,
-    'QA & Test Automation': '340 82% 52%',
-    'DevOps & Workflow': '217 91% 60%',
+    lightColor: string; // HSL color for light mode
+    darkColor: string; // HSL color for dark mode
 };
 
 export const skillCategoriesData: SkillCategory[] = [
@@ -24,7 +16,8 @@ export const skillCategoriesData: SkillCategory[] = [
             'Shadcn',
             'Vite',
         ],
-        categoryColor: CATEGORY_COLORS['Frontend Development'],
+        lightColor: '210 100% 30%',
+        darkColor: '210 100% 60%',
     },
     {
         title: 'Backend & Data',
@@ -37,7 +30,8 @@ export const skillCategoriesData: SkillCategory[] = [
             'Supabase',
             'MongoDB',
         ],
-        categoryColor: CATEGORY_COLORS['Backend & Data'],
+        lightColor: '34 100% 30%',
+        darkColor: '34 100% 60%',
     },
     {
         title: 'QA & Test Automation',
@@ -49,7 +43,8 @@ export const skillCategoriesData: SkillCategory[] = [
             'UDP',
             'CI/CD',
         ],
-        categoryColor: CATEGORY_COLORS['QA & Test Automation'],
+        lightColor: '340 82% 40%',
+        darkColor: '340 82% 60%',
     },
     {
         title: 'DevOps & Workflow',
@@ -61,6 +56,7 @@ export const skillCategoriesData: SkillCategory[] = [
             'Jira',
             'Vercel',
         ],
-        categoryColor: CATEGORY_COLORS['DevOps & Workflow'],
+        lightColor: '118 100% 30%',
+        darkColor: '118 100% 60%',
     },
 ];
