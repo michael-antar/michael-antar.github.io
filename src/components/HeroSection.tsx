@@ -6,15 +6,10 @@ export const HeroSection = () => {
     return (
         <Section id="hero">
             <div className="max-w-3xl mx-auto">
-                <h1 className="text-4xl md:text-5xl font-bold mb-4">
+                <h1 className="text-4xl md:text-5xl font-bold">
                     Michael Antar
                 </h1>
-                <p className="text-lg text-muted-foreground mb-8">
-                    Coding is my passion and main hobby. I'm looking for an
-                    opportunity to contribute to a team where I can work hard,
-                    take ownership of a product, and be proud of what I build.
-                </p>
-                <div className="flex justify-center items-center space-x-6">
+                <div className="flex space-x-6 mt-6">
                     <a
                         href="https://github.com/michael-antar"
                         target="_blank"
@@ -43,8 +38,13 @@ export const HeroSection = () => {
                         <FileText className="h-6 w-6 hover:opacity-75" />
                     </a>
                 </div>
+                <p className="text-lg text-muted-foreground mt-6">
+                    Coding is my passion and main hobby. I'm looking for an
+                    opportunity to contribute to a team where I can work hard,
+                    take ownership of a product, and be proud of what I build.
+                </p>
 
-                <div className="mt-20">
+                <div className="mt-10">
                     <SkillCategories />
                 </div>
             </div>

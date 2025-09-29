@@ -107,6 +107,41 @@ const SKILLS_DATA: { [key: string]: Omit<Skill, 'name'> } = {
         lightColor: '340 82% 52%',
         darkColor: '340 82% 52%',
     },
+    PostgreSQL: {
+        icon: si.siPostgresql,
+        lightColor: '225, 73%, 57%',
+        darkColor: '225, 73%, 67%',
+    },
+    Supabase: {
+        icon: si.siSupabase,
+        lightColor: '153, 60%, 33%',
+        darkColor: '153, 60%, 53%',
+    },
+    Pytest: {
+        icon: si.siPytest,
+        lightColor: '198, 91%, 45%',
+        darkColor: '198, 91%, 45%',
+    },
+    MongoDB: {
+        icon: si.siMongodb,
+        lightColor: '121, 39%, 46%',
+        darkColor: '121, 39%, 46%',
+    },
+    HTML: {
+        icon: si.siHtml5,
+        lightColor: '13, 77%, 52%',
+        darkColor: '13, 77%, 52%',
+    },
+    CSS: {
+        icon: si.siCss,
+        lightColor: '270, 50%, 40%',
+        darkColor: '270, 50%, 60%',
+    },
+    shadcn: {
+        icon: si.siShadcnui,
+        lightColor: '0 0% 20%',
+        darkColor: '0 0% 80%',
+    },
 };
 
 // Simple hash for fallback color
