@@ -1,5 +1,16 @@
 import { Section } from './Section';
+import { SkillBadge } from './SkillBadge';
 import asuLogo from '@/assets/asuLogo.png';
+
+const educationSkills = [
+    'Java',
+    'C++',
+    'Data Structures',
+    'Algorithms',
+    'Software Engineering',
+    'Databases',
+    'Machine Learning',
+];
 
 export const EducationSection = () => {
     return (
@@ -65,6 +76,12 @@ export const EducationSection = () => {
                                 for all 8 semesters.
                             </li>
                         </ul>
+
+                        <div className="flex flex-wrap gap-2 mt-4">
+                            {educationSkills.map((skill) => (
+                                <SkillBadge key={skill} skill={skill} />
+                            ))}
+                        </div>
                     </div>
                 </div>
             </div>

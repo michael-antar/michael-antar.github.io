@@ -142,6 +142,19 @@ const SKILLS_DATA: { [key: string]: Omit<Skill, 'name'> } = {
         lightColor: '0 0% 20%',
         darkColor: '0 0% 80%',
     },
+    Java: {
+        lightColor: '205 100% 40%',
+        darkColor: '205 100% 50%',
+    },
+    'C++': {
+        icon: si.siCplusplus,
+        lightColor: '206, 100%, 31%',
+        darkColor: '206, 100%, 61%',
+    },
+    'Data Structures': {
+        lightColor: '34 97% 44%',
+        darkColor: '34 97% 70%',
+    },
 };
 
 // Simple hash for fallback color
