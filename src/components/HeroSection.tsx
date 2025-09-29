@@ -1,4 +1,5 @@
 import { Section } from './Section';
+import { SkillCategories } from './SkillCategories';
 import { Github, Linkedin, Mail, FileText } from 'lucide-react';
 
 export const HeroSection = () => {
@@ -41,6 +42,10 @@ export const HeroSection = () => {
                     >
                         <FileText className="h-6 w-6 hover:opacity-75" />
                     </a>
+                </div>
+
+                <div className="mt-20">
+                    <SkillCategories />
                 </div>
             </div>
         </Section>
