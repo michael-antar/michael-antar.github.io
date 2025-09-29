@@ -1,6 +1,16 @@
+import { getSkill } from './skills';
+
 export type SkillCategory = {
     title: string;
     skills: string[];
+    categoryColor: string;
+};
+
+const CATEGORY_COLORS = {
+    'Frontend Development': getSkill('React').lightColor,
+    'Backend & Data': getSkill('Python').lightColor,
+    'QA & Test Automation': '340 82% 52%',
+    'DevOps & Workflow': '217 91% 60%',
 };
 
 export const skillCategoriesData: SkillCategory[] = [
@@ -14,6 +24,7 @@ export const skillCategoriesData: SkillCategory[] = [
             'Shadcn',
             'Vite',
         ],
+        categoryColor: CATEGORY_COLORS['Frontend Development'],
     },
     {
         title: 'Backend & Data',
@@ -26,6 +37,7 @@ export const skillCategoriesData: SkillCategory[] = [
             'Supabase',
             'MongoDB',
         ],
+        categoryColor: CATEGORY_COLORS['Backend & Data'],
     },
     {
         title: 'QA & Test Automation',
@@ -37,6 +49,7 @@ export const skillCategoriesData: SkillCategory[] = [
             'UDP',
             'CI/CD',
         ],
+        categoryColor: CATEGORY_COLORS['QA & Test Automation'],
     },
     {
         title: 'DevOps & Workflow',
@@ -48,5 +61,6 @@ export const skillCategoriesData: SkillCategory[] = [
             'Jira',
             'Vercel',
         ],
+        categoryColor: CATEGORY_COLORS['DevOps & Workflow'],
     },
 ];
