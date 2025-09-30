@@ -26,7 +26,7 @@ export const HeroSection = () => {
                     >
                         <Linkedin className="h-6 w-6 hover:opacity-75" />
                     </a>
-                    <a href="mailto:your.email@example.com" aria-label="Email">
+                    <a href="mailto:michaeldantar@gmail.com" aria-label="Email">
                         <Mail className="h-6 w-6 hover:opacity-75" />
                     </a>
                     <a
