@@ -1,5 +1,7 @@
-import orderlyVideoLight from '@/assets/orderly-light.mp4';
-import orderlyVideoDark from '@/assets/orderly-dark.mp4';
+import orderlyVideoLight from '@/assets/orderly-demo-light.mp4';
+import orderlyVideoDark from '@/assets/orderly-demo-dark.mp4';
+import orderlyThumbnailLight from '@/assets/orderly-thumb-light.png';
+import orderlyThumbnailDark from '@/assets/orderly-thumb-dark.png';
 
 export interface Project {
     title: string;
@@ -13,6 +15,8 @@ export interface Project {
     };
     videoLight: string;
     videoDark: string;
+    thumbnailLight: string;
+    thumbnailDark: string;
 }
 
 export const projectsData: Project[] = [
@@ -34,5 +38,7 @@ export const projectsData: Project[] = [
         },
         videoLight: orderlyVideoLight,
         videoDark: orderlyVideoDark,
+        thumbnailLight: orderlyThumbnailLight,
+        thumbnailDark: orderlyThumbnailDark,
     },
 ];

@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { type Project } from '@/data/projects';
 import { Section } from './Section';
 import { SkillBadge } from './SkillBadge';
@@ -29,23 +30,37 @@ type ProjectItemProps = {
 
 const ProjectItem = ({ project }: ProjectItemProps) => {
     const { theme } = useTheme();
+    const [isHovering, setIsHovering] = useState(false);
+
     const videoSrc = theme === 'dark' ? project.videoDark : project.videoLight;
+    const thumbnailSrc =
+        theme === 'dark' ? project.thumbnailDark : project.thumbnailLight;
 
     return (
         <div className="flex flex-col lg:flex-row gap-8 border-t border-border/40 pt-8">
             {/* Visuals Column */}
-            <div className="w-full lg:w-1/2">
-                <video
-                    key={videoSrc}
-                    src={videoSrc}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    className="rounded-lg shadow-md object-contain"
-                >
-                    Your browser does not support the video tag.
-                </video>
+            <div
+                className="w-full lg:w-1/2"
+                onMouseEnter={() => setIsHovering(true)}
+                onMouseLeave={() => setIsHovering(false)}
+            >
+                {isHovering ? (
+                    <video
+                        key={videoSrc}
+                        src={videoSrc}
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        className="rounded-lg shadow-md object-contain"
+                    />
+                ) : (
+                    <img
+                        src={thumbnailSrc}
+                        alt={`${project.title} demo thumbnail`}
+                        className="rounded-lg shadow-md object-contain"
+                    />
+                )}
             </div>
 
             {/* Details Column */}
