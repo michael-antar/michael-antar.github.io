@@ -2,6 +2,7 @@ import { type Project } from '@/data/projects';
 import { Section } from './Section';
 import { SkillBadge } from './SkillBadge';
 import { Github, ExternalLink } from 'lucide-react';
+import { useTheme } from 'next-themes';
 
 type ProjectsSectionProps = {
     projects: Project[];
@@ -13,7 +14,7 @@ export const ProjectsSection = ({ projects }: ProjectsSectionProps) => {
             <h2 className="text-3xl font-bold text-center mb-12">
                 My Projects
             </h2>
-            <div className="grid gap-8 max-w-4xl mx-auto">
+            <div className="grid gap-8 mx-auto">
                 {projects.map((project, index) => (
                     <ProjectItem project={project} key={index} />
                 ))}
@@ -27,19 +28,28 @@ type ProjectItemProps = {
 };
 
 const ProjectItem = ({ project }: ProjectItemProps) => {
+    const { theme } = useTheme();
+    const videoSrc = theme === 'dark' ? project.videoDark : project.videoLight;
+
     return (
-        <div className="flex flex-col md:flex-row gap-8 border-t border-border/40 pt-8">
-            {/* Visuals Column (GIF/Image) */}
-            <div className="w-full md:w-1/3">
-                <img
-                    src={project.gifPath}
-                    alt={`${project.title} demo`}
-                    className="rounded-lg shadow-md aspect-video object-cover"
-                />
+        <div className="flex flex-col lg:flex-row gap-8 border-t border-border/40 pt-8">
+            {/* Visuals Column */}
+            <div className="w-full lg:w-1/2">
+                <video
+                    key={videoSrc}
+                    src={videoSrc}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="rounded-lg shadow-md object-contain"
+                >
+                    Your browser does not support the video tag.
+                </video>
             </div>
 
             {/* Details Column */}
-            <div className="w-full md:w-2/3">
+            <div className="w-full lg:w-1/2">
                 <h3 className="font-bold text-xl mb-2">{project.title}</h3>
                 <p className="text-muted-foreground text-sm mb-4">
                     {project.description}

@@ -1,3 +1,6 @@
+import orderlyVideoLight from '@/assets/orderly-light.mp4';
+import orderlyVideoDark from '@/assets/orderly-dark.mp4';
+
 export interface Project {
     title: string;
     pitch: string;
@@ -8,7 +11,8 @@ export interface Project {
         live: string;
         repo: string;
     };
-    gifPath: string;
+    videoLight: string;
+    videoDark: string;
 }
 
 export const projectsData: Project[] = [
@@ -28,6 +32,7 @@ export const projectsData: Project[] = [
             live: 'https://orderly-rank.vercel.app/',
             repo: 'https://github.com/michael-antar/orderly',
         },
-        gifPath: '/assets/ranked-reviews-demo.gif',
+        videoLight: orderlyVideoLight,
+        videoDark: orderlyVideoDark,
     },
 ];
