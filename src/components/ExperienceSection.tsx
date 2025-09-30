@@ -1,6 +1,7 @@
 import { type Experience } from '@/data/experiences';
 import { Section } from './Section';
 import { SkillBadge } from './SkillBadge';
+import { useTheme } from 'next-themes';
 
 type ExperienceSectionProps = {
     experiences: Experience[];
@@ -31,6 +32,8 @@ type ExperienceItemProps = {
 };
 
 const ExperienceItem = ({ experience }: ExperienceItemProps) => {
+    const { theme } = useTheme();
+    const logo = theme === 'dark' ? experience.logoDark : experience.logoLight;
     return (
         <div className="relative pl-8 md:pl-12 py-4">
             {/* The dot on the timeline */}
@@ -38,9 +41,18 @@ const ExperienceItem = ({ experience }: ExperienceItemProps) => {
 
             <p className="text-sm text-muted-foreground">{experience.date}</p>
             <h3 className="font-bold text-lg mt-1">{experience.role}</h3>
-            <h4 className="font-medium text-primary/80 mb-3">
-                {experience.company}
-            </h4>
+            <div className="flex items-center gap-3 mb-3">
+                <h4 className="font-medium text-primary/80">
+                    {experience.company}
+                </h4>
+                {logo && (
+                    <img
+                        src={logo}
+                        alt={`${experience.company} logo`}
+                        className="h-5 object-contain"
+                    />
+                )}
+            </div>
 
             <ul className="list-disc pl-5 space-y-2 text-sm">
                 {experience.description.map((point, index) => (

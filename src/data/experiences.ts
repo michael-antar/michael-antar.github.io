@@ -1,3 +1,10 @@
+import calampLogoLight from '@/assets/calamp-light.png';
+import calampLogoDark from '@/assets/calamp-dark.png';
+import cryoxLogoLight from '@/assets/cryox-light.png';
+import mastercardLogo from '@/assets/mastercard.png';
+import o9LogoLight from '@/assets/o9-light.png';
+import o9LogoDark from '@/assets/o9-dark.png';
+
 export interface Experience {
     role: string;
     type: string;
@@ -5,6 +12,8 @@ export interface Experience {
     date: string;
     description: string[];
     techStack: string[];
+    logoLight?: string;
+    logoDark?: string;
 }
 
 export const experienceData: Experience[] = [
@@ -12,6 +21,8 @@ export const experienceData: Experience[] = [
         role: 'Software Test Engineer Intern',
         type: 'Internship',
         company: 'CalAmp',
+        logoLight: calampLogoLight,
+        logoDark: calampLogoDark,
         date: 'June 2025 - Sep 2025',
         description: [
             'Developed Python scripts with Robot Framework to perform automated, byte-level validation of TCP/IP and UDP message protocols for embedded IoT devices.',
@@ -24,6 +35,7 @@ export const experienceData: Experience[] = [
         role: 'Full-Stack Developer (Web Simulation)',
         type: 'Capstone Project',
         company: 'CryoX',
+        logoLight: cryoxLogoLight,
         date: 'Aug 2024 - May 2025',
         description: [
             'Owned the end-to-end development of a performant, data-intensive web application, leading the project from requirements gathering to final production deployment.',
@@ -43,6 +55,8 @@ export const experienceData: Experience[] = [
         role: 'Applied AI Systems Intern',
         type: 'Internship',
         company: 'o9 Solutions',
+        logoLight: o9LogoLight,
+        logoDark: o9LogoDark,
         date: 'June 2024 - Aug 2024',
         description: [
             'Co-led the development of a "Generative AI Log Mining" project, boosting developer productivity by automating log analysis and query response with GPT-4o.',
@@ -55,6 +69,8 @@ export const experienceData: Experience[] = [
         role: 'Software Quality Engineer Intern',
         type: 'Internship',
         company: 'Mastercard',
+        logoLight: mastercardLogo,
+        logoDark: mastercardLogo,
         date: 'June 2023 - Aug 2023',
         description: [
             'Spearheaded the creation and execution of automated end-to-end tests for a merchant loyalty platform, reducing manual testing efforts by 40%.',
