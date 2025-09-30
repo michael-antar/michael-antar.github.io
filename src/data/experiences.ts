@@ -29,7 +29,7 @@ export const experienceData: Experience[] = [
             'Collaborated directly with the firmware team to debug low-level C code, identifying and helping remove legacy calculations to optimize performance.',
             'Engineered a scalable, JSON-driven automation framework that increased test coverage across 15+ message types and enabled rapid implementation of future tests.',
         ],
-        techStack: ['Python', 'Robot Framework', 'TCP/IP', 'UDP', 'C', 'JSON'],
+        techStack: ['Python', 'Robot Framework', 'JSON', 'C', 'TCP/IP', 'UDP'],
     },
     {
         role: 'Full-Stack Developer (Web Simulation)',
@@ -63,7 +63,16 @@ export const experienceData: Experience[] = [
             'Designed and implemented backend systems in Python, utilizing SQL and pandas to filter, extract, and store large-scale log data from MongoDB.',
             'Developed both frontend and backend components for an AI chatbot, enabling developers to query logs with natural language and receive real-time responses.',
         ],
-        techStack: ['Python', 'LLM', 'SQL', 'pandas', 'RAG'],
+        techStack: [
+            'Python',
+            'pandas',
+            'Streamlit',
+            'SQL',
+            'LLM',
+            'RAG',
+            'NLP',
+            'Vector Search',
+        ],
     },
     {
         role: 'Software Quality Engineer Intern',

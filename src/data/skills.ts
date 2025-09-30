@@ -12,10 +12,10 @@ type Skill = {
 const COLOR_PALETTE = [
     '217 91% 60%', // Blue
     '158 87% 36%', // Green
-    '34 97% 64%', // Orange
+    // '34 97% 64%', // Orange
     '340 82% 52%', // Pink
     '197 90% 41%', // Cyan
-    '262 84% 59%', // Violet
+    '262 84% 69%', // Violet
 ];
 
 // Directory for skill colors
@@ -154,6 +154,11 @@ const SKILLS_DATA: { [key: string]: Omit<Skill, 'name'> } = {
     'Data Structures': {
         lightColor: '34 97% 44%',
         darkColor: '34 97% 70%',
+    },
+    Streamlit: {
+        icon: si.siStreamlit,
+        lightColor: '0, 100%, 65%',
+        darkColor: '0, 100%, 65%',
     },
 };
 

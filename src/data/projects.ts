@@ -31,7 +31,16 @@ export const projectsData: Project[] = [
             'Robust sorting and filtering with custom tags',
             'Responsive design for mobile and desktop',
         ],
-        techStack: ['React', 'TypeScript', 'Supabase', 'Tailwind CSS'],
+        techStack: [
+            'React',
+            'TypeScript',
+            'Supabase',
+            'Tailwind CSS',
+            'PostgreSQL',
+            'shadcn',
+            'Vite',
+            'Vercel',
+        ],
         links: {
             live: 'https://orderly-rank.vercel.app/',
             repo: 'https://github.com/michael-antar/orderly',

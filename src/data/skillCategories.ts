@@ -30,6 +30,7 @@ export const skillCategoriesData: SkillCategory[] = [
             'REST APIs',
             'Supabase',
             'MongoDB',
+            'JSON',
         ],
         lightColor: '34 100% 30%',
         darkColor: '34 100% 60%',
