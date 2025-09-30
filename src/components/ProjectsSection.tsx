@@ -4,6 +4,7 @@ import { Section } from './Section';
 import { SkillBadge } from './SkillBadge';
 import { Github, ExternalLink } from 'lucide-react';
 import { useTheme } from 'next-themes';
+import { cn } from '@/lib/utils';
 
 type ProjectsSectionProps = {
     projects: Project[];
@@ -40,27 +41,30 @@ const ProjectItem = ({ project }: ProjectItemProps) => {
         <div className="flex flex-col lg:flex-row gap-8 border-t border-border/40 pt-8">
             {/* Visuals Column */}
             <div
-                className="w-full lg:w-1/2"
+                className="w-full lg:w-1/2 relative"
                 onMouseEnter={() => setIsHovering(true)}
                 onMouseLeave={() => setIsHovering(false)}
             >
-                {isHovering ? (
-                    <video
-                        key={videoSrc}
-                        src={videoSrc}
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        className="rounded-lg shadow-md object-contain"
-                    />
-                ) : (
-                    <img
-                        src={thumbnailSrc}
-                        alt={`${project.title} demo thumbnail`}
-                        className="rounded-lg shadow-md object-contain"
-                    />
-                )}
+                <img
+                    src={thumbnailSrc}
+                    alt={`${project.title} demo thumbnail`}
+                    className={cn(
+                        'rounded-lg shadow-md object-contain transition-opacity duration-300',
+                        isHovering ? 'opacity-0' : 'opacity-100',
+                    )}
+                />
+                <video
+                    key={videoSrc}
+                    src={videoSrc}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className={cn(
+                        'rounded-lg shadow-md object-contain absolute inset-0 w-full h-full transition-opacity duration-300',
+                        isHovering ? 'opacity-100' : 'opacity-0',
+                    )}
+                />
             </div>
 
             {/* Details Column */}
