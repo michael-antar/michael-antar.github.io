@@ -2,93 +2,155 @@
 
 ## Project Overview
 
-Michael Antar's personal portfolio: a static, single-page React 19 + TypeScript application built with Vite 7 and Tailwind CSS v4. It presents experience, projects, education, and skills, and deploys to GitHub Pages from `main`. There is no backend, router, runtime data fetching, or global state store.
+Michael Antar's personal portfolio: a static, responsive, single-page site written
+as handwritten HTML and CSS. It presents experience, projects, education, and
+skills, and deploys to GitHub Pages from `main`. There is no framework, package
+manager, build step, dependency lockfile, runtime JavaScript, router, or data
+fetching. `site/` is the live document and the complete Pages artifact.
 
 ## Architecture & Data Flow
 
-- `src/main.tsx` mounts the app in `StrictMode` and provides class-based light/dark/system theming through `next-themes`.
-- `src/App.tsx` is the composition root: `Layout` contains the navigation, animated background, section grid, and footer.
-- Content flows one way: static arrays in `src/data/` -> section props/imports -> reusable components and badges. `App.tsx` explicitly passes `experienceData` and `projectsData`; skills and categories are imported where rendered.
-- `Section.tsx` supplies the shared animated card wrapper. Navigation uses `react-scroll` against section IDs rather than routes.
-- State is limited to theme context and local UI state such as project hover. There is no dependency-injection layer, async service layer, or application error-handling convention.
-- Theme-aware colors and media use light/dark pairs. Semantic CSS variables in `src/index.css` connect Tailwind utilities to the `.dark` class set by `next-themes`.
-- Vite emits static `dist/`; GitHub Actions publishes that directory to Pages with `base: '/'`.
+- `site/index.html` is the entire document: head metadata, inline icon sprite,
+  header, sections, and footer. Content is authored directly in the markup; there
+  is no template layer, data file, or state store.
+- `site/styles.css` owns every style: the six design tokens, typography, layout
+  grids, timeline, badges, and focus states.
+- `site/assets/` holds the raster media: organization logos, the ASU seal, the
+  Orderly posters, and the two demo videos.
+- `site/favicon.svg`, `site/resume.pdf`, and `site/og-image.png` are published
+  from the site root with root-relative URLs such as `/resume.pdf`.
+- Only `site/` is uploaded. Root files (`README.md`, `AGENTS.md`, `.github/`,
+  `.gitignore`, `.gitattributes`) are repository housekeeping and are never
+  published.
+- `.github/workflows/deploy.yml` checks out with `lfs: true` and uploads `./site`
+  directly with `actions/upload-pages-artifact`. There is no install or build
+  job.
 
-When adding a section, give its `Section` an `id` and add the matching `Navbar` link. The scroll offset in `Navbar.tsx` is coupled to the sticky header height. Use `resolvedTheme`, not `theme`, when selecting theme-specific assets so `system` mode works.
+## Design Philosophy
 
-## Key Directories
+- Reach for the simplest native browser capability first: anchors for
+  navigation, `<details>` for the demo, native video controls for playback,
+  `prefers-color-scheme` for theming.
+- No framework, build pipeline, or runtime JavaScript on this page. If a feature
+  seems to need JavaScript, prefer dropping the feature or finding a native
+  control.
+- Content and typography outrank decoration. Add structure and whitespace, not
+  ornament.
+- Avoid scroll hijacking, parallax, autoplay, continuous animation, and
+  disclosures that exist for their own sake. Use subtle interaction only when it
+  aids usability, and respect `prefers-reduced-motion` if motion is ever
+  introduced.
+- Keep media opt-in: a poster plus an explicit play action. Never autoplay or
+  preload demo video.
 
-| Path | Purpose |
-| --- | --- |
-| `src/components/` | Page sections, layout, navigation, theme controls, and animation |
-| `src/components/ui/` | Generated shadcn/ui primitives; prefer regenerating over ad hoc redesign |
-| `src/data/` | Experience, project, skill, and skill-category content plus their types |
-| `src/assets/` | Imported images and light/dark demo videos; Vite hashes these assets |
-| `src/lib/` | Shared utilities, currently `cn()` for class composition |
-| `public/` | Files copied verbatim to the site root, such as `/resume.pdf` and `/og-image.png` |
-| `.github/workflows/` | GitHub Pages build and deployment |
+## Visual System
 
-Most content edits belong in `src/data/`. Exceptions include hero/footer copy and `educationSkills` in `EducationSection.tsx`.
+- Font stack, everywhere:
+  `system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif`. Do not
+  ship, download, or link font files.
+- Six semantic tokens, defined once in `:root` and redefined in
+  `@media (prefers-color-scheme: dark)`:
 
-## Development Commands
+  |Token|Light|Dark|
+  |---|---|---|
+  |`--background`|`#fafafa`|`#111113`|
+  |`--foreground`|`#18181b`|`#f4f4f5`|
+  |`--muted`|`#52525b`|`#a1a1aa`|
+  |`--surface`|`#f4f4f5`|`#1c1c1f`|
+  |`--border`|`#e4e4e7`|`#303034`|
+  |`--accent`|`#1d4ed8`|`#93c5fd`|
 
-| Task | Command |
-| --- | --- |
-| Reproducible install | `npm ci` |
-| Install/update dependencies | `npm install` |
-| Start Vite development server | `npm run dev` |
-| Typecheck and production build | `npm run build` |
-| Typecheck only | `npx tsc -b` |
-| Lint TypeScript/TSX | `npm run lint` |
-| Preview the production build | `npm run preview` |
-| Format selected paths | `npx prettier --write <paths>` |
+  `color-scheme` follows the same media query so native controls and scrollbars
+  match. The OS preference is the only theme selector: no toggle, no stored
+  preference, no manual override.
+- One accent color on a neutral palette; all text/background pairs stay above
+  WCAG AA. Do not reintroduce per-skill or per-category color generation.
+- Layout: `.layout` is one column in DOM order (Hero, Education, Experience,
+  Projects) and two equal columns at `min-width: 64rem` with a `3rem` gap. The
+  project media and details sit side by side only at `64rem` and wider.
+- Organization logos stay small and unstretched:
+  `max-width: 7.5rem; max-height: 1.5rem; width: auto; height: auto`. The ASU
+  seal is `7rem` wide at every viewport; do not reintroduce the old square crop
+  or desktop-only hiding.
+- Sticky header height is coupled to `scroll-margin-top` on the section targets
+  (`6rem`, `8rem` below `36rem`). Changing header padding or the wrapping break
+  requires updating those values.
 
-Scope Prettier to changed paths; `dist/` is not in `.prettierignore`. Pushing to `main` or manually running the Pages workflow deploys the site. CI runs `npm ci` and `npm run build`, but not lint, formatting, or tests.
+## Performance
 
-## Code Conventions & Common Patterns
+- No third-party requests: no CDN, analytics, fonts, or external stylesheets.
+- Give every `<img>` intrinsic `width` and `height`, plus `loading="lazy"` and
+  `decoding="async"` for anything below the fold.
+- Raster UI images are WebP sized to roughly 3x their maximum CSS box. Keep
+  `site/og-image.png` as PNG: social platforms read it independently of page
+  weight.
+- Never add `autoplay` or `preload="auto"` to the demo videos. `preload="none"`
+  plus native controls keeps the MP4s off the wire until an explicit Play.
+- Theme-specific media uses `<picture>` with a
+  `<source media="(prefers-color-scheme: dark)">` and a light `<img>` fallback.
+- `site/assets/*.mp4` must stay Git LFS objects; `.gitattributes` is unchanged.
 
-- Handwritten code uses four-space indentation, single quotes, semicolons, and named component exports. Generated files under `src/components/ui/` retain shadcn's style.
-- Use `@/` for cross-directory imports (`@/data/skills`, `@/assets/...`); local relative imports are also present within components.
-- TypeScript is strict. Unused locals/parameters fail `npm run build`; use `import type` or inline `type` imports as required by `verbatimModuleSyntax`.
-- Use Tailwind utilities and semantic tokens from `src/index.css`. Tailwind v4 is configured in CSS with `@theme` and `@custom-variant`; do not add a separate Tailwind config unless intentionally changing that setup. Use `cn()` for conditional classes.
-- Add shadcn primitives under `src/components/ui/` using the aliases in `components.json`. Use the declared `motion/react` package for new animation code.
-- Keep experience/project content typed and data-driven. Projects require light/dark video and thumbnail fields; project descriptions may be JSX, hence `projects.tsx`.
-- Skill names are case-sensitive keys in `SKILLS_DATA`. Unknown strings silently receive a hash-selected color and no icon, so add or verify the registry entry when introducing a skill.
-- Preserve Git LFS for `*.mp4`; run `git lfs pull` if local videos are pointer files. Reference `public/` assets with root-relative URLs.
-- Avoid introducing state management, fetching, or routing for static-content-only changes; follow the existing direct data/props pattern.
+## Authoring
 
-## Important Files
+- Four-space indentation, double-quoted attributes, semantic HTML, one `h1`, and
+  section-level `h2` headings. Skill category titles are `h3` under a
+  visually-hidden `h2` so the heading order never skips a level.
+- Every icon-only link needs an accessible name (`aria-label`). External links
+  keep `target="_blank" rel="noopener noreferrer"`.
+- Focus must stay visible: keep the global `:focus-visible` outline and the skip
+  link that appears on focus.
+- Navigation uses plain anchors with hashes; no smooth-scroll script, no
+  `pushState`.
+- Inline SVGs that repeat visible text are decorative: `aria-hidden="true"` and
+  no `<title>`. Do not duplicate a badge name inside its SVG.
+- Edit copy directly in `site/index.html`. Skill strings are exact, case-sensitive
+  strings; only add an icon reference (`<use href="#i-…">`) when a matching path
+  already exists in the sprite. Skills without an icon stay iconless.
+- The sprite keeps Lucide's complete license text in the comment beside it. If
+  you add or replace Lucide icons, keep that license comment intact and copy the
+  new paths verbatim. Note the Simple Icons CC0 provenance for their paths.
+- Handwritten CSS only: no preprocessor, no utility framework, no generated
+  stylesheet. Prefer the existing tokens over new colors or sizes.
 
-| File | Role |
-| --- | --- |
-| `index.html` | HTML mount point, metadata, font links, and social preview metadata |
-| `src/main.tsx` | React entry point and theme provider |
-| `src/App.tsx` | Section composition and top-level data injection |
-| `src/index.css` | Tailwind v4 setup and light/dark design tokens |
-| `src/data/projects.tsx` | Project schema, JSX descriptions, and media imports |
-| `src/data/skills.ts` | Skill registry, icons, colors, and fallback behavior |
-| `vite.config.ts` | React/Tailwind plugins, `@` alias, and root Pages base |
-| `tsconfig.app.json` | Strict application compiler settings |
-| `components.json` | shadcn/ui generation settings and aliases |
-| `eslint.config.js` | TypeScript, React Hooks, and React Refresh lint rules |
-| `.github/workflows/deploy.yml` | Build and GitHub Pages deployment |
+## Key Files
 
-## Runtime/Tooling Preferences
+|File|Role|
+|---|---|
+|`site/index.html`|Complete document: metadata, icon sprite, content, demo disclosure|
+|`site/styles.css`|Design tokens, typography, layout, components, focus states|
+|`site/assets/`|Logos, seal, posters, and Git LFS demo videos|
+|`site/og-image.png`|Social preview image referenced by the Open Graph tags|
+|`.github/workflows/deploy.yml`|Uploads `site/` to GitHub Pages|
 
-- Use **Node.js and npm**, not Bun, Yarn, or pnpm; `package-lock.json` is the lockfile.
-- Use Node `^20.19.0` or `>=22.12.0` to satisfy Vite 7. No repository Node version is pinned; CI currently selects `lts/*`.
-- No environment variables or secrets are required by the application.
-- Keep `base: '/'` while deploying to `https://michael-antar.github.io/`; changing hosting to a subpath requires URL and metadata changes.
-- `dist/` and TypeScript incremental state are generated artifacts; do not edit them.
+## Local Development
 
-## Testing & QA
+Serve the publish root; there is no install or build step:
 
-There is currently **no test framework, test script, test suite, or coverage requirement**. Do not report a nonexistent `npm test` command as a check.
+```sh
+python3 -m http.server 4173 --directory site
+```
 
-Before finishing a change:
+Then open `http://127.0.0.1:4173/`. Pushing to `main` or manually dispatching the
+Pages workflow deploys `site/`.
 
-1. Run `npm run build` and `npm run lint`.
-2. For visual or interaction changes, run the app or production preview and exercise the affected surface. Check responsive layout, navigation, and light/dark/system themes as relevant.
-3. For project-media changes, verify thumbnails and hover videos with actual Git LFS content, not pointer files.
+## Verification
 
-CI's only automated gate is the production build. Adding a test runner or coverage tooling is new infrastructure, not an existing repository convention.
+There is no test framework, test script, linter, or build check in this
+repository. Do not claim an `npm test`, build, lint, or deployment check exists;
+CI deploys but neither builds nor tests.
+
+Before finishing a change, exercise it against the real static server:
+
+1. Load the page at desktop and mobile widths; confirm the two-column and
+   single-column layouts, no horizontal overflow, and the section order.
+2. Switch the emulated color scheme and confirm both themes: tokens, native
+   control color scheme, dark logo and poster variants, and readable muted text.
+3. From a fresh network capture, assert no script requests, no external or font
+   requests, no `.mp4` requests before Play, no console errors, and no 404s.
+4. Open the demo disclosure and confirm both videos stay paused until the native
+   Play control is used, then that playback starts, advances, and pauses.
+5. Tab through the skip link, navigation, contact links, disclosure, and video
+   controls; focus must remain visible and anchors must land below the sticky
+   header.
+6. Confirm every referenced asset resolves (`/styles.css`, `/resume.pdf`,
+   `/og-image.png`, `/favicon.svg`, and each `site/assets/` file).

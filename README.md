@@ -1,22 +1,40 @@
 # Michael Antar - Personal Portfolio
 
-This repo contains the source code for my personal portfolio website. It's a fully responsive, SPA designed to showcase my skills, experiences, and projects. I was inspired by Apple's recent _glassmorphism_ design, and used an interactive bubble background that works well for both light and dark modes.
+A static, responsive, single-page portfolio for Michael Antar. The page is
+handwritten HTML and CSS: no framework, no build step, no dependencies, and no
+runtime JavaScript. It presents experience, projects, education, and skills and
+deploys straight to GitHub Pages.
 
-![Screenshot of site](/public/og-image.png)
+![Screenshot of site](site/og-image.png)
 
-## Technologies Used
+## Design
 
-- **Framework**: React (with Vite)
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS
-- **Animations**: Framer Motion
-- **Deployment**: Hosted on GitHub Pages with automated deployments via GitHub Actions.
-- **Large File Handling**: Git LFS for managing video assets.
+- **Theming**: follows the operating system light/dark preference with
+  `prefers-color-scheme`; there is no theme toggle and no stored preference.
+- **Typography**: the system UI font stack; no web fonts and no third-party font
+  requests.
+- **Layout**: a two-column desktop composition at `64rem` and wider, collapsing
+  to one column in DOM order on smaller screens.
+- **Interaction**: native anchors for navigation, native `<details>` for the
+  project demo, and native video controls. Nothing autoplays.
+- **Deployment**: GitHub Pages serves the `site/` directory directly.
+- **Large files**: Git LFS tracks the demo videos in `site/assets/*.mp4`.
 
 ## Run Locally
 
-1. Clone repo: `git clone https://github.com/michael-antar/michael-antar.github.io.git`
-2. Install dependencies: `npm install`
-3. Either run development server or production ready build:
-    - `npm run dev`
-    - `npm run build` + `npm run preview`
+No dependencies to install. Serve the publish root and open
+`http://127.0.0.1:4173/`:
+
+```sh
+python3 -m http.server 4173 --directory site
+```
+
+## Deployment
+
+Pushing to `main` or dispatching the **Deploy static content to Pages** workflow
+manually publishes `site/` to GitHub Pages with `actions/deploy-pages`. There is
+no build, install, or test step; the workflow uploads the `site/` directory
+as-is.
+
+The two demo videos are Git LFS objects. Run `git lfs pull` after cloning if they
+arrive as pointer files.
