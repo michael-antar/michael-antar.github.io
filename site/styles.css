@@ -1,0 +1,616 @@
+/* ==========================================================================
+   Michael Antar — static portfolio stylesheet
+
+   No build step, no runtime JavaScript, no web fonts. Colors come from six
+   semantic tokens that follow the operating system color scheme.
+   ========================================================================== */
+
+:root {
+    --background: #fafafa;
+    --foreground: #18181b;
+    --muted: #52525b;
+    --surface: #f4f4f5;
+    --border: #e4e4e7;
+    --accent: #1d4ed8;
+    color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background: #111113;
+        --foreground: #f4f4f5;
+        --muted: #a1a1aa;
+        --surface: #1c1c1f;
+        --border: #303034;
+        --accent: #93c5fd;
+        color-scheme: dark;
+    }
+}
+
+/* Base ------------------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    margin: 0;
+    background: var(--background);
+    color: var(--foreground);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+img,
+video {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+a {
+    color: var(--muted);
+    text-decoration: none;
+    text-underline-offset: 0.2em;
+}
+
+a:hover {
+    color: var(--accent);
+    text-decoration: underline;
+}
+
+:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 2px;
+}
+
+p {
+    margin: 0;
+}
+
+/* The sprite defines every icon; it must never take up layout space. */
+.sprite {
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+
+.container {
+    width: min(80rem, calc(100% - 2rem));
+    margin-inline: auto;
+}
+
+/* Skip link -------------------------------------------------------------- */
+
+.skip-link {
+    position: absolute;
+    top: -4rem;
+    left: 0.5rem;
+    z-index: 10;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    background: var(--surface);
+    color: var(--foreground);
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.skip-link:focus {
+    top: 0.5rem;
+}
+
+/* Header ----------------------------------------------------------------- */
+
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    background: var(--background);
+    border-bottom: 1px solid var(--border);
+}
+
+.nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.25rem 1rem;
+    min-height: 3.5rem;
+    padding-block: 0.5rem;
+}
+
+.brand {
+    color: var(--foreground);
+    font-size: 1.125rem;
+    font-weight: 700;
+}
+
+.brand:hover {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.brand-short {
+    display: none;
+}
+
+.nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 1.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.nav-links a {
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+@media (max-width: 47.9375rem) {
+    .brand-full {
+        display: none;
+    }
+
+    .brand-short {
+        display: inline;
+    }
+}
+
+@media (max-width: 35.9375rem) {
+    .nav-links {
+        flex: 1 1 100%;
+        justify-content: center;
+        gap: 0.25rem 1rem;
+    }
+}
+
+/* Page layout ------------------------------------------------------------ */
+
+main {
+    padding-block: 1.5rem 0;
+}
+
+.layout {
+    display: grid;
+    gap: 2rem;
+}
+
+.layout-column {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+@media (min-width: 64rem) {
+    .layout {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: 3rem;
+        align-items: start;
+    }
+
+    .layout-projects {
+        grid-column: 1 / -1;
+    }
+}
+
+.section {
+    padding-block: 2rem;
+    border-top: 1px solid var(--border);
+}
+
+.section-title {
+    margin: 0 0 2rem;
+    font-size: 1.5rem;
+    line-height: 1.25;
+    text-align: center;
+}
+
+/* Hero ------------------------------------------------------------------- */
+
+.hero {
+    padding-top: 0.5rem;
+    border-top: 0;
+}
+
+.hero-name {
+    margin: 0;
+    font-size: clamp(2.25rem, 5vw, 3.5rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+}
+
+.contact-links {
+    display: flex;
+    gap: 1.5rem;
+    margin: 1.5rem 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.contact-links a {
+    display: block;
+    color: var(--muted);
+}
+
+.contact-links a:hover {
+    color: var(--accent);
+}
+
+.icon {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.icon-sm {
+    width: 1rem;
+    height: 1rem;
+}
+
+.hero-bio {
+    max-width: 65ch;
+    margin-top: 1.5rem;
+    font-size: 1.0625rem;
+    color: var(--muted);
+}
+
+/* Skill categories ------------------------------------------------------- */
+
+.skill-categories {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.skill-category {
+    padding: 1rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+}
+
+.skill-category h3 {
+    margin: 0 0 0.75rem;
+    font-size: 1rem;
+    line-height: 1.4;
+}
+
+/* Badges ----------------------------------------------------------------- */
+
+.badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.375rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.0625rem 0.625rem;
+    background: var(--background);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    color: var(--muted);
+    font-size: 0.75rem;
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+.badge-icon {
+    flex: none;
+    width: 0.75rem;
+    height: 0.75rem;
+}
+
+/* Education -------------------------------------------------------------- */
+
+.education {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.education-seal {
+    flex: none;
+    width: 7rem;
+    height: auto;
+}
+
+.education-body {
+    flex: 1 1 18rem;
+    min-width: 0;
+}
+
+.date {
+    font-size: 0.875rem;
+    color: var(--muted);
+}
+
+.education-heading {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0 0.5rem;
+    margin-top: 0.25rem;
+}
+
+.education-heading h3 {
+    margin: 0;
+    font-size: 1.125rem;
+    line-height: 1.4;
+}
+
+.gpa {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--muted);
+}
+
+.degree {
+    margin-top: 0.25rem;
+    font-weight: 500;
+    color: var(--accent);
+}
+
+.bullets {
+    margin: 1rem 0 0;
+    padding-left: 1.25rem;
+    font-size: 0.875rem;
+}
+
+.bullets li + li {
+    margin-top: 0.5rem;
+}
+
+.education .badges,
+.timeline .badges {
+    margin-top: 1rem;
+}
+
+/* Experience ------------------------------------------------------------- */
+
+.experience {
+    border-top: 0;
+}
+
+@media (max-width: 63.9375rem) {
+    .experience {
+        border-top: 1px solid var(--border);
+    }
+}
+
+.timeline {
+    margin: 0;
+    padding: 0;
+    border-left: 1px solid var(--border);
+    list-style: none;
+}
+
+.timeline-item {
+    position: relative;
+    padding-left: 1.5rem;
+    padding-block: 0.25rem;
+}
+
+.timeline-item + .timeline-item {
+    margin-top: 1.5rem;
+}
+
+.timeline-item::before {
+    content: "";
+    position: absolute;
+    top: 0.75rem;
+    left: -3px;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+}
+
+.role {
+    margin: 0.25rem 0 0;
+    font-size: 1.125rem;
+    line-height: 1.4;
+}
+
+.company {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.25rem 0.75rem;
+    margin-top: 0.25rem;
+    margin-bottom: 0.75rem;
+}
+
+.company-name {
+    font-weight: 500;
+    color: var(--accent);
+}
+
+.company picture {
+    display: inline-flex;
+    align-items: center;
+}
+
+.company-logo {
+    width: auto;
+    height: auto;
+    max-width: 7.5rem;
+    max-height: 1.5rem;
+    object-fit: contain;
+}
+
+/* Projects --------------------------------------------------------------- */
+
+.projects {
+    border-top: 1px solid var(--border);
+}
+
+.project {
+    display: grid;
+    gap: 1.5rem;
+}
+
+@media (min-width: 64rem) {
+    .project {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: 2rem;
+        align-items: start;
+    }
+}
+
+.project h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1.25rem;
+    line-height: 1.3;
+}
+
+.project-description {
+    margin-bottom: 1rem;
+    font-size: 0.9375rem;
+    color: var(--muted);
+}
+
+.project-media img {
+    border-radius: 0.5rem;
+}
+
+.project-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.project-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    font-size: 0.875rem;
+}
+
+/* Native demo disclosure ------------------------------------------------- */
+
+.demo summary {
+    display: block;
+    cursor: pointer;
+    list-style: none;
+}
+
+.demo summary::-webkit-details-marker {
+    display: none;
+}
+
+.demo summary picture {
+    display: block;
+}
+
+.demo[open] summary picture {
+    display: none;
+}
+
+.play-label {
+    display: inline-block;
+    margin-top: 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+}
+
+.demo-media {
+    aspect-ratio: 1919 / 961;
+    margin-top: 0.75rem;
+    overflow: hidden;
+    border-radius: 0.5rem;
+    background: #000;
+}
+
+.demo-media video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.video-light {
+    display: block;
+}
+
+.video-dark {
+    display: none;
+}
+
+@media (prefers-color-scheme: dark) {
+    .video-light {
+        display: none;
+    }
+
+    .video-dark {
+        display: block;
+    }
+}
+
+/* Footer ----------------------------------------------------------------- */
+
+.site-footer {
+    margin-top: 1.5rem;
+    padding-block: 1.5rem;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    font-size: 0.875rem;
+    color: var(--muted);
+}
+
+.site-footer p {
+    margin: 0;
+}
+
+/* Anchors ---------------------------------------------------------------- */
+
+#hero,
+#education,
+#experience,
+#projects {
+    scroll-margin-top: 6rem;
+}
+
+@media (max-width: 35.9375rem) {
+    #hero,
+    #education,
+    #experience,
+    #projects {
+        scroll-margin-top: 8rem;
+    }
+}
