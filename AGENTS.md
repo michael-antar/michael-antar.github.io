@@ -101,8 +101,9 @@ fetching. `site/` is the live document and the complete Pages artifact.
 - Four-space indentation, double-quoted attributes, semantic HTML, one `h1`, and
   section-level `h2` headings. Skill category titles are `h3` under a
   visually-hidden `h2` so the heading order never skips a level.
-- Every icon-only link needs an accessible name (`aria-label`). External links
-  keep `target="_blank" rel="noopener noreferrer"`.
+- Contact and project links carry visible text, which is their accessible name;
+  do not add an `aria-label` that repeats it. External links keep
+  `target="_blank" rel="noopener noreferrer"`.
 - Focus must stay visible: keep the global `:focus-visible` outline and the skip
   link that appears on focus.
 - Navigation uses plain anchors with hashes; no smooth-scroll script, no
@@ -112,9 +113,9 @@ fetching. `site/` is the live document and the complete Pages artifact.
 - Edit copy directly in `site/index.html`. Skill strings are exact, case-sensitive
   strings; only add an icon reference (`<use href="#i-…">`) when a matching path
   already exists in the sprite. Skills without an icon stay iconless.
-- The sprite keeps Lucide's complete license text in the comment beside it. If
-  you add or replace Lucide icons, keep that license comment intact and copy the
-  new paths verbatim. Note the Simple Icons CC0 provenance for their paths.
+- The sprite holds only Simple Icons technology paths, under the CC0 1.0
+  provenance comment inside it. Copy new paths verbatim and keep that comment;
+  no icon set with a license body belongs back in the document.
 - Handwritten CSS only: no preprocessor, no utility framework, no generated
   stylesheet. Prefer the existing tokens over new colors or sizes.
 
