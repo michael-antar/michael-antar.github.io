@@ -552,3 +552,25 @@ main {
         scroll-margin-top: 8rem;
     }
 }
+
+.section:target {
+    outline: 1px solid var(--accent);
+    outline-offset: 0.5rem;
+}
+
+@keyframes section-target-fade {
+    0%,
+    60% {
+        outline-color: var(--accent);
+    }
+
+    100% {
+        outline-color: transparent;
+    }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .section:target {
+        animation: section-target-fade 2s ease-out forwards;
+    }
+}

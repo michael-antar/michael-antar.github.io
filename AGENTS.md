@@ -76,6 +76,12 @@ fetching. `site/` is the live document and the complete Pages artifact.
 - Sticky header height is coupled to `scroll-margin-top` on the section targets
   (`6rem`, `8rem` below `36rem`). Changing header padding or the wrapping break
   requires updating those values.
+- Native hash navigation highlights the matched `.section:target` with a 1px
+  accent outline that fades to transparent over two seconds. The animation is
+  color-only and lives behind `prefers-reduced-motion: no-preference`, so reduced
+  motion keeps a static accent outline; neither the outline nor the animation
+  changes section geometry. The global `:focus-visible` outline stays
+  independent of it.
 
 ## Performance
 
@@ -107,7 +113,7 @@ fetching. `site/` is the live document and the complete Pages artifact.
 - Focus must stay visible: keep the global `:focus-visible` outline and the skip
   link that appears on focus.
 - Navigation uses plain anchors with hashes; no smooth-scroll script, no
-  `pushState`.
+  `pushState`. The visited-section highlight is CSS `.section:target` only.
 - Inline SVGs that repeat visible text are decorative: `aria-hidden="true"` and
   no `<title>`. Do not duplicate a badge name inside its SVG.
 - Edit copy directly in `site/index.html`. Skill strings are exact, case-sensitive
