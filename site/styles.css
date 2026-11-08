@@ -502,8 +502,13 @@ main {
     color: var(--muted);
 }
 
-.project-media img {
+.project-media video {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1919 / 961;
+    object-fit: contain;
     border-radius: 0.5rem;
+    background: #000;
 }
 
 .project-links {
@@ -520,49 +525,7 @@ main {
     font-size: 0.875rem;
 }
 
-/* Native demo disclosure ------------------------------------------------- */
-
-.demo summary {
-    display: block;
-    cursor: pointer;
-    list-style: none;
-}
-
-.demo summary::-webkit-details-marker {
-    display: none;
-}
-
-.demo summary picture {
-    display: block;
-}
-
-.demo[open] summary picture {
-    display: none;
-}
-
-.play-label {
-    display: inline-block;
-    margin-top: 0.75rem;
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: var(--accent);
-    text-decoration: underline;
-    text-underline-offset: 0.2em;
-}
-
-.demo-media {
-    aspect-ratio: 1919 / 961;
-    margin-top: 0.75rem;
-    overflow: hidden;
-    border-radius: 0.5rem;
-    background: #000;
-}
-
-.demo-media video {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-}
+/* Demo videos ------------------------------------------------------------ */
 
 .video-light {
     display: block;

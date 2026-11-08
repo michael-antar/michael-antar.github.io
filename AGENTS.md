@@ -29,7 +29,7 @@ fetching. `site/` is the live document and the complete Pages artifact.
 ## Design Philosophy
 
 - Reach for the simplest native browser capability first: anchors for
-  navigation, `<details>` for the demo, native video controls for playback,
+  navigation, native video controls with `poster` attributes for the demo,
   `prefers-color-scheme` for theming.
 - No framework, build pipeline, or runtime JavaScript on this page. If a feature
   seems to need JavaScript, prefer dropping the feature or finding a native
@@ -40,8 +40,9 @@ fetching. `site/` is the live document and the complete Pages artifact.
   disclosures that exist for their own sake. Use subtle interaction only when it
   aids usability, and respect `prefers-reduced-motion` if motion is ever
   introduced.
-- Keep media opt-in: a poster plus an explicit play action. Never autoplay or
-  preload demo video.
+- Keep media opt-in: each demo video carries a native `poster` plus native
+  controls, so the WebP poster arrives as an image and the MP4 stays off the
+  wire until an explicit Play. Never autoplay or preload demo video.
 
 ## Visual System
 
@@ -86,7 +87,12 @@ fetching. `site/` is the live document and the complete Pages artifact.
   weight.
 - Never add `autoplay` or `preload="auto"` to the demo videos. `preload="none"`
   plus native controls keeps the MP4s off the wire until an explicit Play.
-- Theme-specific media uses `<picture>` with a
+- The two themed demo videos are plain `<video>` elements whose `poster`
+  attributes point at the light and dark WebP thumbnails; the matching
+  `.video-light`/`.video-dark` rules hide one of them per color scheme. Do not
+  reintroduce a `<details>` disclosure, a custom Play label, or a `<source
+  media>` inside `<video>`.
+- Theme-specific images use `<picture>` with a
   `<source media="(prefers-color-scheme: dark)">` and a light `<img>` fallback.
 - `site/assets/*.mp4` must stay Git LFS objects; `.gitattributes` is unchanged.
 
@@ -116,7 +122,7 @@ fetching. `site/` is the live document and the complete Pages artifact.
 
 |File|Role|
 |---|---|
-|`site/index.html`|Complete document: metadata, icon sprite, content, demo disclosure|
+|`site/index.html`|Complete document: metadata, icon sprite, content, demo videos|
 |`site/styles.css`|Design tokens, typography, layout, components, focus states|
 |`site/assets/`|Logos, seal, posters, and Git LFS demo videos|
 |`site/og-image.png`|Social preview image referenced by the Open Graph tags|
@@ -147,10 +153,10 @@ Before finishing a change, exercise it against the real static server:
    control color scheme, dark logo and poster variants, and readable muted text.
 3. From a fresh network capture, assert no script requests, no external or font
    requests, no `.mp4` requests before Play, no console errors, and no 404s.
-4. Open the demo disclosure and confirm both videos stay paused until the native
-   Play control is used, then that playback starts, advances, and pauses.
-5. Tab through the skip link, navigation, contact links, disclosure, and video
-   controls; focus must remain visible and anchors must land below the sticky
-   header.
+4. Confirm each color scheme shows its own demo poster with native controls in
+   the same place, that both videos stay paused until the visible native Play
+   control is used, and that playback then starts, advances, and pauses.
+5. Tab through the skip link, navigation, contact links, and video controls;
+   focus must remain visible and anchors must land below the sticky header.
 6. Confirm every referenced asset resolves (`/styles.css`, `/resume.pdf`,
    `/og-image.png`, `/favicon.svg`, and each `site/assets/` file).
